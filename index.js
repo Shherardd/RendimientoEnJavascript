@@ -1,6 +1,11 @@
 let users = []
 let products = []
 
+const keyBy = (arr, key) => arr.reduce((acc, el) => {
+    acc[el[key]] = el
+    return acc
+}, {})
+
 const elem = 50000
 for (let i = 0; i < elem; i++) {
     users.push({ id: i, nombre: `nombre-${i}`})
@@ -14,10 +19,12 @@ for (let i = 0; i < elem; i++) {
     })
 }
 
+const keyedUsers = keyBy(users, 'id')
+
 console.time(1)
 const mezclados = products.map(x => ({
     ...x,
-    user: users.find(y => y.id === x.user_id)
+    user: keyedUsers[x.user_id]
 }))
 console.timeEnd(1)
 console.log('mezclados', mezclados[0])
