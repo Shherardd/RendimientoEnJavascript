@@ -28,4 +28,5 @@ const mezclados = products.map(x => ({
     user: keyedUsers[x.user_id]
 }))
 console.timeEnd(1)
+console.log(keyedUsers)
 console.log('mezclados', mezclados[0])
